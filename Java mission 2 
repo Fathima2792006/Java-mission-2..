@@ -1,0 +1,83 @@
+interface Display {
+    void showDetails();
+}
+
+// Parent Class
+class Person {
+    protected String name;
+
+    Person(String name) {
+        this.name = name;
+    }
+}
+
+// Patient Class
+class Patient extends Person implements Display {
+
+    private int patientId;
+    private String disease;
+
+    Patient(String name, int patientId, String disease) {
+        super(name);
+        this.patientId = patientId;
+        this.disease = disease;
+    }
+
+    public int getPatientId() {
+        return patientId;
+    }
+
+    public void setPatientId(int patientId) {
+        this.patientId = patientId;
+    }
+
+    @Override
+    public void showDetails() {
+        System.out.println("Patient Name : " + name);
+        System.out.println("Patient ID   : " + patientId);
+        System.out.println("Disease      : " + disease);
+    }
+}
+
+// Doctor Class
+class Doctor extends Person implements Display {
+
+    private String specialization;
+
+    Doctor(String name, String specialization) {
+        super(name);
+        this.specialization = specialization;
+    }
+
+    @Override
+    public void showDetails() {
+        System.out.println("Doctor Name  : " + name);
+        System.out.println("Specialization: " + specialization);
+    }
+}
+
+// Main Class
+public class Main {
+
+    public static void main(String[] args) {
+
+        Display patient1 = new Patient(
+                "Aswina",
+                101,
+                "Fever"
+        );
+
+        Display doctor1 = new Doctor(
+                "Ramesh",
+                "Cardiologist"
+        );
+
+        System.out.println("===== HOSPITAL MANAGEMENT SYSTEM =====");
+
+        System.out.println("\n--- Patient Details ---");
+        patient1.showDetails();
+
+        System.out.println("\n--- Doctor Details ---");
+        doctor1.showDetails();
+    }
+}
